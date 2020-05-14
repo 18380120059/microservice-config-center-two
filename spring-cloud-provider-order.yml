@@ -1,19 +1,26 @@
-#����������
-server:
-  port: 8081
+#注意：如果在记事本上编写，下面的缩进不要使用Tab来缩进，不然报错
 spring:
+  profiles:
+    active: dev # 激活开发环境配置
+    
+---
+#服务器配置
+server:
+  port: 8181
+spring:
+  profiles: dev # 开发环境
   thymeleaf:
     cache: false
   application:
     name: microservice-order
-  #��Ŀ���ݿ�����
+  #项目数据库配置
   datasource:
     druid:
       url: jdbc:mysql://192.168.243.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
-      #druid ����  ���ݿ����ӳ�����
+      #druid 配置  数据库连接池配置
       initialSize: 5
       minIdle: 5
       maxActive: 20
@@ -30,13 +37,13 @@ spring:
       use-global-data-source-stat: true
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-  #mybatis plus����
+  #mybatis plus配置
 mybatis-plus:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.mengxuegu.springcloud.entities
 
-  #log�����ļ�
+  #log配置文件
 logging:
   config: classpath:log/logback-spring.xml
   #logging.level.com.mengxuegu.springcloud.mapper=NONE
@@ -47,20 +54,87 @@ logging:
           mapper: debug
   #logging.level.org.springframework.web=TRACE
 
-  #����ͻ�������
+  #服务客户端配置
 
-  #�������Ҫ�������Ժ�ķ��������֮���໥����һ�㶼�Ǹ������name
+  #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
 
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-  # ע�ᵽ��һ��Eureka Server����ע�����ģ�����м��ö��ŷָ�
+  # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
     service-url:
       defaultZone: http://localhost:8188/eureka,http://localhost:8189/eureka
     instance:
       instanceId: ${spring.application.name}:${server.port}
-      #����·���ͻ���ʾ��IP��ַ
+      #访问路径就会显示成IP地址
       prefer-ip-address: true
 
+
+---
+#服务器配置
+server:
+  port: 8181
+spring:
+  profiles: prod # 开发环境
+  thymeleaf:
+    cache: false
+  application:
+    name: microservice-order
+  #项目数据库配置
+  datasource:
+    druid:
+      url: jdbc:mysql://192.168.243.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #druid 配置  数据库连接池配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validation-query: SELECT 1 FROM sysibm.sysdummy1
+      testWhileIdle: false
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      filters: stat,wall,logback
+      max-pool-prepared-statement-per-connection-size: 20
+      use-global-data-source-stat: true
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  #mybatis plus配置
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.mengxuegu.springcloud.entities
+
+  #log配置文件
+logging:
+  config: classpath:log/logback-spring.xml
+  #logging.level.com.mengxuegu.springcloud.mapper=NONE
+  level:
+    com:
+      mengxuegu:
+        springcloud:
+          mapper: debug
+  #logging.level.org.springframework.web=TRACE
+
+  #服务客户端配置
+
+  #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  # 注册到哪一个Eureka Server服务注册中心，多个中间用逗号分隔
+    service-url:
+      defaultZone: http://localhost:8188/eureka,http://localhost:8189/eureka
+    instance:
+      instanceId: ${spring.application.name}:${server.port}
+      #访问路径就会显示成IP地址
+      prefer-ip-address: true
 
