@@ -16,7 +16,7 @@ spring:
   #项目数据库配置
   datasource:
     druid:
-      url: jdbc:mysql://192.168.243.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      url: jdbc:mysql://192.168.150.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -84,7 +84,7 @@ spring:
   #项目数据库配置
   datasource:
     druid:
-      url: jdbc:mysql://192.168.243.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      url: jdbc:mysql://192.168.150.111:3306/pams?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
