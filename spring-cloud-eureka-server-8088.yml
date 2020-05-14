@@ -4,7 +4,7 @@ spring:
     active: dev # 激活开发环境配置
 ---
 server:
-  port: 80881 #端口号
+  port: 8188 #端口号
 spring:
   profiles: dev # 开发环境
   application:
@@ -17,12 +17,12 @@ eureka:
     registerWithEureka: false 
     fetchRegistry: false 
     serviceUrl:
-      defaultZone: http://localhost:80881/eureka/
+      defaultZone: http://localhost:8189/eureka/
   server:
     enable-self-preservation: false # 禁用自我保护机制*****************
 ---
 server:
-  port: 80882 #端口号
+  port: 8288 #端口号
 spring:
   profiles: prod # 生产环境
   application:
@@ -35,7 +35,7 @@ eureka:
     registerWithEureka: false 
     fetchRegistry: false 
     serviceUrl:
-      defaultZone: http://localhost:80882/eureka/
+      defaultZone: http://localhost:8289/eureka/
   server:
     enable-self-preservation: true # 开启自我保护机制*****************
     
