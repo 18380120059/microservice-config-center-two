@@ -12,7 +12,7 @@ spring:
   thymeleaf:
     cache: false
   application:
-    name: microservice-order111
+    name: microservice-order
   #项目数据库配置
   datasource:
     druid:
