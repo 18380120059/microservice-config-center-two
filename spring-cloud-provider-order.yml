@@ -12,7 +12,7 @@ spring:
   thymeleaf:
     cache: false
   application:
-    name: microservice-order111
+    name: microservice-order
   #项目数据库配置
   datasource:
     druid:
@@ -66,14 +66,6 @@ eureka:
       instanceId: ${spring.application.name}:${server.port}
       #访问路径就会显示成IP地址
       prefer-ip-address: true
-      
-#  暴露触发消息总线的地址
-management:
-  endpoints:
-    web:
-      exposure:
-        include: bus-refresh
-
 
 ---
 #服务器配置
